@@ -1,29 +1,28 @@
-import java.util.ArrayList;
 import java.util.List;
 
 public class NeuralNetwork {
-    int[] dot;
-    ArrayList<double[][]> weights;
+    int inputDot;
+    int outDot;
+    double alpha;
+    double[][] weights;
 
-    public NeuralNetwork(int ... dot) {
-        this.dot = dot;
-        weights = new ArrayList<>();
+    public NeuralNetwork(double alpha, int inputDot, int outDot) {
+        this.alpha = alpha;
+        this.inputDot = inputDot;
+        this.outDot = outDot;
         // TODO create multiThreads
         createRandomWeights();
     }
 
-    public void tutorial(List<int[]> inputImageDataSet,List<Integer> inputLabelDataSet){
+    public void gradientDescentTutorial(List<int[]> inputImageDataSet, List<double[]> inputLabelDataSet) {
 
     }
 
 
-    private void createRandomWeights(){
-        for(int i = 0;i<dot.length-1;i++)
-            weights.add(new double[dot[i]][dot[i+1]]);
-
-        for (double[][] tmp: weights)
-            for(int i = 0;i<tmp.length;i++)
-                for (int j = 0; j < tmp[i].length; j++)
-                    tmp[i][j] = Math.random();
+    private void createRandomWeights() {
+        weights = new double[inputDot][outDot];
+        for (int i = 0; i < weights.length; i++)
+            for (int j = 0; j < weights[i].length; j++)
+                weights[i][j] = Math.random();
     }
 }
