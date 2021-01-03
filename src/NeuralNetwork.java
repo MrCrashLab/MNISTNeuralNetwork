@@ -1,3 +1,4 @@
+import java.util.Arrays;
 import java.util.List;
 
 public class NeuralNetwork {
@@ -32,12 +33,16 @@ public class NeuralNetwork {
         }
     }
 
-    public int work(double[] inputImage){
+    public int test(double[] inputImage){
         int num = -1;
         double[] pred;
         pred = VectorCalculation.vectorMatrixMul(inputImage, weights);
-        for (int j = 0; j < pred.length; j++) {
-            System.out.println(pred[j]);
+        double max = pred[0];
+        for(int i = 0;i<pred.length;i++){
+            if(pred[i]>max){
+                max = pred[i];
+                num = i;
+            }
         }
         return num;
     }
