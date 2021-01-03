@@ -5,7 +5,7 @@ public class Worker {
     private final String inputImagePath = "DataSets/train-images.idx3-ubyte";
     private final String inputLabelPath = "DataSets/train-labels.idx1-ubyte";
     private final NeuralNetwork neuralNetwork;
-    private List<int[]> inputImageDataSet;
+    private List<double[]> inputImageDataSet;
     private List<double[]> inputLabelDataSet;
 
     public Worker() {
@@ -20,7 +20,6 @@ public class Worker {
         inputLabelDataSet = new ArrayList<>();
         for (int num : tmpList) {
             double[] tmp = new double[10];
-            System.out.println(num);
             for (int i = 0; i < tmp.length; i++) {
                 if (i == num) tmp[i] = 1;
                 else tmp[i] = 0;

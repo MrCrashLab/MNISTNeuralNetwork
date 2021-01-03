@@ -8,7 +8,7 @@ public class VectorCalculation {
     }
 
     public static double[] vectorMatrixMul(double[] vector, double[][]matrix){
-        double[] output = new double[vector.length];
+        double[] output = new double[matrix.length];
         for(int i = 0; i<matrix.length;i++){
             output[i] = vectorMul(vector, matrix[i]);
         }

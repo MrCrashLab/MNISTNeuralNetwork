@@ -14,13 +14,22 @@ public class NeuralNetwork {
         createRandomWeights();
     }
 
-    public void gradientDescentTutorial(List<int[]> inputImageDataSet, List<double[]> inputLabelDataSet) {
-
+    public void gradientDescentTutorial(List<double[]> inputImageDataSet, List<double[]> inputLabelDataSet) {
+        double[] deltas = new double[outDot];
+        double[] errors = new double[outDot];
+        double[] pred;
+        for(int i = 0;i<inputImageDataSet.size();i++){
+            pred = VectorCalculation.vectorMatrixMul(inputImageDataSet.get(i),weights);
+            for(int j = 0;j<pred.length;j++){
+                System.out.println(pred[j]);
+            }
+            System.out.println("\n");
+        }
     }
 
 
     private void createRandomWeights() {
-        weights = new double[inputDot][outDot];
+        weights = new double[outDot][inputDot];
         for (int i = 0; i < weights.length; i++)
             for (int j = 0; j < weights[i].length; j++)
                 weights[i][j] = Math.random();

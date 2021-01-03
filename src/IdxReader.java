@@ -5,15 +5,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class IdxReader {
-    public static List<int[]> readInputImageDataSet(String inputImagePath) {
+    public static List<double[]> readInputImageDataSet(String inputImagePath) {
         try (FileInputStream inImage = new FileInputStream(inputImagePath)) {
             int magicNumberImages = (inImage.read() << 24) | (inImage.read() << 16) | (inImage.read() << 8) | (inImage.read());
             int numberOfImages = (inImage.read() << 24) | (inImage.read() << 16) | (inImage.read() << 8) | (inImage.read());
             int numberOfRows = (inImage.read() << 24) | (inImage.read() << 16) | (inImage.read() << 8) | (inImage.read());
             int numberOfColumns = (inImage.read() << 24) | (inImage.read() << 16) | (inImage.read() << 8) | (inImage.read());
             int numberOfPixels = numberOfRows * numberOfColumns;
-            int[] imgPixels = new int[numberOfPixels];
-            List<int[]> inputData = new ArrayList<>();
+            double[] imgPixels = new double[numberOfPixels];
+            List<double[]> inputData = new ArrayList<>();
 
             for (int i = 0; i < numberOfImages; i++) {
                 if (i % 100 == 0) {
