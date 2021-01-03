@@ -17,21 +17,35 @@ public class NeuralNetwork {
     public void gradientDescentTutorial(List<double[]> inputImageDataSet, List<double[]> inputLabelDataSet) {
         double[] deltas = new double[outDot];
         double[] errors = new double[outDot];
+        double[][] weights_delta;
         double[] pred;
-        for(int i = 0;i<inputImageDataSet.size();i++){
-            pred = VectorCalculation.vectorMatrixMul(inputImageDataSet.get(i),weights);
-            for(int j = 0;j<pred.length;j++){
-                System.out.println(pred[j]);
+        for (int i = 0; i < inputImageDataSet.size(); i++) {
+            pred = VectorCalculation.vectorMatrixMul(inputImageDataSet.get(i), weights);
+            for (int j = 0; j < pred.length; j++) {
+                errors[j] = Math.pow(pred[j] - inputLabelDataSet.get(i)[j], 2);
+                deltas[j] = pred[j] - inputLabelDataSet.get(i)[j];
             }
-            System.out.println("\n");
+            weights_delta = VectorCalculation.vectorVectorMul(deltas, inputImageDataSet.get(i));
+            for (int j = 0; j < weights.length; j++)
+                for (int k = 0; k < weights[j].length; k++)
+                    weights[j][k] -= alpha * weights_delta[j][k];
         }
     }
 
+    public int work(double[] inputImage){
+        int num = -1;
+        double[] pred;
+        pred = VectorCalculation.vectorMatrixMul(inputImage, weights);
+        for (int j = 0; j < pred.length; j++) {
+            System.out.println(pred[j]);
+        }
+        return num;
+    }
 
     private void createRandomWeights() {
         weights = new double[outDot][inputDot];
         for (int i = 0; i < weights.length; i++)
             for (int j = 0; j < weights[i].length; j++)
-                weights[i][j] = Math.random();
+                weights[i][j] = Math.random()/1000000000;
     }
 }

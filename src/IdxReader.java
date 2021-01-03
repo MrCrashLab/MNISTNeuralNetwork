@@ -12,16 +12,17 @@ public class IdxReader {
             int numberOfRows = (inImage.read() << 24) | (inImage.read() << 16) | (inImage.read() << 8) | (inImage.read());
             int numberOfColumns = (inImage.read() << 24) | (inImage.read() << 16) | (inImage.read() << 8) | (inImage.read());
             int numberOfPixels = numberOfRows * numberOfColumns;
-            double[] imgPixels = new double[numberOfPixels];
+            double[] imgPixels = null;
             List<double[]> inputData = new ArrayList<>();
 
             for (int i = 0; i < numberOfImages; i++) {
+                imgPixels = new double[numberOfPixels];
                 if (i % 100 == 0) {
                     System.out.println("Number of images extracted: " + i);
                 }
                 for (int p = 0; p < numberOfPixels; p++) {
                     int gray = 255 - inImage.read();
-                    imgPixels[p] = 0xFF000000 | (gray << 16) | (gray << 8) | gray;
+                    imgPixels[p] = (0xFF000000 | (gray << 16) | (gray << 8) | gray)/10000000;
                 }
                 inputData.add(imgPixels);
             }

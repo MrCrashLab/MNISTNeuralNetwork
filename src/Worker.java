@@ -10,7 +10,7 @@ public class Worker {
 
     public Worker() {
         readAndConverting();
-        neuralNetwork = new NeuralNetwork(0.01, 784, 10);
+        neuralNetwork = new NeuralNetwork(0.0000001, 784, 10);
         neuralNetwork.gradientDescentTutorial(inputImageDataSet, inputLabelDataSet);
     }
 
